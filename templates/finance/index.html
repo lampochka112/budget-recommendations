@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой бюджет</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 0 auto; }
+        .transaction { padding: 10px; border-bottom: 1px solid #eee; }
+        .income { color: green; }
+        .expense { color: red; }
+    </style>
+</head>
+<body>
+    <h1>💰 Мои финансы</h1>
+    {% for t in transactions %}
+        <div class="transaction {{ t.transaction_type }}">
+            {{ t.date }}: {{ t.amount }} ₽ - {{ t.category.name|default:"Без категории" }}
+        </div>
+    {% endfor %}
+</body>
+</html>

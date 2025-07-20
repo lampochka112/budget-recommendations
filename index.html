@@ -1,0 +1,17 @@
+<!-- Простая форма без перезагрузки страницы -->
+<form id="quick-add" onsubmit="addTransaction(event)">
+    <input type="number" step="0.01" placeholder="Сумма" required>
+    <button type="submit">+ Добавить</button>
+</form>
+<div class="stats">
+    <p>💵 За месяц: {{ month_income }} ₽</p>
+    <p>💸 Расходы: {{ month_expenses }} ₽</p>
+    <p>✅ Остаток: {{ month_income|default:0|subtract:month_expenses|default:0 }} ₽</p>
+</div>
+<script>
+function addTransaction(e) {
+    e.preventDefault();
+    fetch('/api/add-transaction/', {method: 'POST', body: new FormData(e.target)})
+        .then(response => location.reload())  
+</script>
+}
