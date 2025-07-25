@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Мой Бюджет{% endblock %}
+
+{% block content %}
+<h1>Мои расходы</h1>
+<table>
+    <tr>
+        <th>Название</th>
+        <th>Сумма</th>
+    </tr>
+    {% for budget in budgets %}
+    <tr>
+        <td>{{ budget.name }}</td>
+        <td>{{ budget.amount }} руб.</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="2">Нет данных о бюджете</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{% url 'add_budget' %}">Добавить запись</a>
+
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}

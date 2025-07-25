@@ -1,10 +1,9 @@
-from django.views.generic import ListView
-from .models import Transaction
-
-class SimpleTransactionView(ListView):
-    model = Transaction
-    template_name = 'finance/simple_list.html'
-    context_object_name = 'transactions'
-    
-    def get_queryset(self):
-        return Transaction.objects.filter(user=self.request.user).order_by('-date')[:20]  # Только 20 последних
+def add_budget(request):
+    if request.method == 'POST':
+        form = BudgetForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+    else:
+        form = BudgetForm()
+    return render(request, 'budget/add.html', {'form': form})
