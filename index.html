@@ -4,7 +4,7 @@
     <button type="submit">+ Добавить</button>
 </form>
 <div class="stats">
-    <p>💵 За месяц: {{ month_income }} ₽</p>
+    <p>💵 За месяц: {{ month_income }} ₽</p>>>>
     <p>💸 Расходы: {{ month_expenses }} ₽</p>
     <p>✅ Остаток: {{ month_income|default:0|subtract:month_expenses|default:0 }} ₽</p>
 </div>
